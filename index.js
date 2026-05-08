@@ -29,6 +29,13 @@ app.use(express.json());
 
 app.use("/api/user", userRoutes);
 app.use("/api/entries", auth, entriesRoutes);
+app.get("/api/debug-env", (req, res) => {
+	res.json({
+		frontend_url: process.env.FRONTEND_URL,
+		node_env: process.env.NODE_ENV,
+		status: "Backend está lendo as variáveis!",
+	});
+});
 
 app.listen(port, () => {
 	console.log(`API running on port ${port}`);
