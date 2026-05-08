@@ -16,5 +16,5 @@ export function auth(req, res, next) {
 
 export function jwtSign(user, res) {
 	const token = jwt.sign({ id: user.id, username: user.username, name: user.name }, process.env.JWT_SECRET, { expiresIn: "24h" });
-	res.cookie("token", token, { httpOnly: true, sameSite: "none" });
+	res.cookie("token", token, { httpOnly: true, sameSite: "none", secure: true });
 }
