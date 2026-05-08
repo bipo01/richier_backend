@@ -12,17 +12,17 @@ import { auth } from "./src/config/auth.js";
 const app = express();
 const port = 3000;
 
+env.config();
+db.connect();
+
+console.log(process.env.FRONTEND_URL);
+
 app.use(
 	cors({
 		origin: process.env.FRONTEND_URL,
 		credentials: true,
 	}),
 );
-
-console.log(process.env.FRONTEND_URL);
-
-env.config();
-db.connect();
 
 app.use(cookieParser());
 app.use(express.json());
